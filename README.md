@@ -54,7 +54,7 @@ req
 Chain API, The result of the first request is taken as the parameter of the second request. like this:
 
 ```javascript
-const Reqman = require('reqman);
+const Reqman = require('reqman');
 
 //Just need to set up a basic domain
 const req = new Reqman({
