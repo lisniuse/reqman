@@ -54,7 +54,7 @@ req
 Chain API, The result of the first request is taken as the parameter of the second request. like this:
 
 ```javascript
-const Reqman = require('reqman');
+const Reqman = require('reqman);
 
 //Just need to set up a basic domain
 const req = new Reqman({
@@ -64,21 +64,21 @@ const req = new Reqman({
 //login
 .push(function(){return {
     method: "POST",
-    url: '/api/login',
+    url: `/api/login`,
     form: user,
     after: function (result) { //This callback function is called when this request ends.
         let body = JSON.parse(result.body);
         this.userToken = body.data.token;
     }
 }})
-//Update a user's profile.
+//Update a user`s profile.
 .push(function(){
     return false;
     return {
     method: "POST",
-    url: '/api/user/updateInfo',
+    url: `/api/user/updateInfo`,
     headers: {
-        'Authorization': this.userToken 
+        `Authorization`: this.userToken 
     },
     form: {
         nickname: "jack ma"
@@ -102,17 +102,17 @@ const req = new Reqman({
 //api a
 .push(function(){return {
     method: "POST",
-    url: '/api/a'
+    url: `/api/a`
 }})
 //api b
 .only(function(){return {
     method: "POST",
-    url: '/api/b'
+    url: `/api/b`
 }})
 //and api c
 .push(function(){return {
     method: "POST",
-    url: '/api/c'
+    url: `/api/c`
 }})
 .do()//just do it.
 ```
@@ -134,19 +134,19 @@ const req = new Reqman({
 //api a
 .push(function(){return {
     method: "POST",
-    url: '/api/a'
+    url: `/api/a`
 }})
 //api b
 .push(function(){
     return false;
     return {
     method: "POST",
-    url: '/api/b'
+    url: `/api/b`
 }})
 //and api c
 .push(function(){return {
     method: "POST",
-    url: '/api/c'
+    url: `/api/c`
 }})
 .do()//just do it.
 ```
