@@ -1,0 +1,43 @@
+{
+  "name": "reqman",
+  "description": "Reqman is a tool that can quickly help nodejs engineers with api testing",
+  "version": "0.0.1",
+  "author": "Lisniuse <l@numpy.org.cn>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lisniuse/reqman.git"
+  },
+  "homepage": "https://github.com/lisniuse/reqman",
+  "keywords": [
+    "test",
+    "apitest",
+    "request",
+    "web",
+    "restful",
+    "api",
+    "backend"
+  ],
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "lodash": "^4.17.10",
+    "request": "^2.87.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.2.0",
+    "koa": "^2.5.2"
+  },
+  "engines": {
+    "node": ">= 8.0.0"
+  },
+  "files": [
+    "LICENSE",
+    "Readme.md",
+    "Readme_cn.md",
+    "index.js",
+    "lib/"
+  ],
+  "scripts": {
+    "test": ""
+  }
+}
