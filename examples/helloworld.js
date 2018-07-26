@@ -35,6 +35,14 @@ req
 .push(function() {
     return {
     method: "GET",
+    url: `/?a=1`, 
+    data: {
+        bar: 'foo'
+    }
+}})
+.push(function() {
+    return {
+    method: "GET",
     url: `/`, 
     data: {
         bar: 'foo'
