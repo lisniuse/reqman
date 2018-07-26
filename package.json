@@ -1,7 +1,7 @@
 {
   "name": "reqman",
   "description": "Reqman is a tool that can quickly help nodejs engineers with api testing",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Lisniuse <l@numpy.org.cn>",
   "license": "MIT",
   "repository": {
