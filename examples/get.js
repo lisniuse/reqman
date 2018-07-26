@@ -4,7 +4,7 @@ const server = require("../server/server");
 const Reqman = require("../lib/reqman");
 
 //run server on 3000.
-server("Hello World!");
+server();
 
 //Just need to set up a basic domain
 const req = new Reqman({
@@ -15,7 +15,18 @@ req
 .push(function() {
     return {
     method: "GET",
-    url: `/`
+    url: `/?a=1`, 
+    data: {
+        bar: 'foo'
+    }
+}})
+.push(function() {
+    return {
+    method: "GET",
+    url: `/`, 
+    data: {
+        bar: 'foo'
+    }
 }})
 .do(function () {
     console.log("exit!");
