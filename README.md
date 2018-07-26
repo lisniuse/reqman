@@ -61,11 +61,17 @@ const req = new Reqman({
     baseUrl: "http://127.0.0.1:3000"
 });
 
+//Define an object for the user
+const user = {
+    username: "admin"
+    password: "admin"
+}
+
 //login
 .push(function(){return {
     method: "POST",
     url: `/api/login`,
-    form: user,
+    data: user, // object for the user
     after: function (result) { //This callback function is called when this request ends.
         let body = JSON.parse(result.body);
         this.userToken = body.data.token;
@@ -80,7 +86,7 @@ const req = new Reqman({
     headers: {
         `Authorization`: this.userToken 
     },
-    form: {
+    data: {
         nickname: "jack ma"
     }
 }})

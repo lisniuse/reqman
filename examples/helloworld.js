@@ -5,7 +5,24 @@ const app = new Koa();
 const Reqman = require("../lib/reqman");
 
 app.use(async ctx => {
-  ctx.body = 'Hello World';
+    async function getBody () {
+        return new Promise(function (reslove, reject) {
+            let postdata = "";
+            ctx.req.addListener('data', (data) => {
+                postdata += data;
+            })
+            ctx.req.addListener("end", function() {
+                reslove(postdata);
+            });
+        });
+    }
+    let bodyData = await getBody();
+    bodyData = bodyData !== "" ? bodyData : 'no body';
+    let response = `
+> [query data]: \n${JSON.stringify(ctx.query)}
+> [body data]: \n${bodyData}
+    `;
+    ctx.body = response;
 });
 app.listen(3000);
 
@@ -18,7 +35,29 @@ req
 .push(function() {
     return {
     method: "GET",
-    url: `/`
+    url: `/`, 
+    data: {
+        bar: 'foo'
+    }
+}})
+.push(function() {
+    return {
+    method: "POST",
+    headers: {
+        "content-type": "application/json"
+    },
+    url: `/`,
+    data: {
+        bar: 'foo'
+    }
+}})
+.push(function() {
+    return {
+    method: "POST",
+    url: `/`,
+    data: {
+        bar: 'foo'
+    }
 }})
 .do(function () {
     console.log("exit!");
