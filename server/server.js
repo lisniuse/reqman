@@ -23,6 +23,7 @@ module.exports = async function (resStr) {
         let bodyData = await getBody();
         bodyData = bodyData !== "" ? bodyData : 'no body';
         let response = `
+> [header]: \n${JSON.stringify(ctx.header)}
 > [query data]: \n${JSON.stringify(ctx.query)}
 > [body data]: \n${bodyData}
         `;
