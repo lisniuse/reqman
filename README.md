@@ -69,6 +69,7 @@ const user = {
     password: "admin"
 }
 
+req
 //login
 .push(function(){return {
     method: "POST",
@@ -107,6 +108,7 @@ const req = new Reqman({
     baseUrl: "http://127.0.0.1:3000"
 });
 
+req
 //api a
 .push(function(){return {
     method: "POST",
@@ -139,6 +141,7 @@ const req = new Reqman({
     baseUrl: "http://127.0.0.1:3000"
 });
 
+req
 //api a
 .push(function(){return {
     method: "POST",
