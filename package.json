@@ -20,8 +20,8 @@
   ],
   "dependencies": {
     "chalk": "^2.4.1",
-    "lodash": "^4.17.10",
-    "request": "^2.87.0"
+    "flyio": "^0.6.13",
+    "lodash": "^4.17.10"
   },
   "devDependencies": {
     "eslint": "^5.2.0",

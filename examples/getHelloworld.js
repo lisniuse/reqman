@@ -17,7 +17,7 @@ req
     method: "GET",
     url: `/`
 }})
-.do(function () {
+.done(function () {
     console.log("exit!");
     process.exit(1);
 })
