@@ -1,8 +1,8 @@
 # reqman
 
-> Reqman是一个可以快速帮助后端工程师进行api测试的工具。
+Reqman是一个可以快速帮助后端工程师进行api测试的工具。
 
-# 安装
+## 安装
 
 这是一个通过 [npm registry](https://www.npmjs.com/) 提供的 [Node.js](https://nodejs.org/en/) 模块。
 
