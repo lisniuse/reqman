@@ -51,30 +51,33 @@ const Reqman = require('reqman');
 
 //只需要设置一个请求基地址
 const req = new Reqman({
-    baseUrl: "http://127.0.0.1:3000"
+  baseUrl: "http://127.0.0.1:3000"
 });
 
 //比如你想获取所有用户的统计信息，你可以这样写
 req
-.push(function() {
+  .push(function () {
     return {
-    method: "GET",
-    url: `/api/user/count`
-}})
-.done();
+      method: "GET",
+      url: `/api/user/count`
+    }
+  })
+  .done();
+
 ```
 
 如果你指定showInfo参数为false，那么就不会打印结果到屏幕上，像这样：
 
 ```javascript
 req
-.push(function() {
+  .push(function () {
     return {
-    method: "GET",
-    url: `/api/user/count`,
-    showInfo: false
-}})
-.done();
+      method: "GET",
+      url: `/api/user/count`,
+      showInfo: false
+    }
+  })
+  .done();
 ```
 
 ### 例子2: 链式API
@@ -86,42 +89,45 @@ const Reqman = require('reqman');
 
 //需要设置一个请求基地址
 const req = new Reqman({
-    baseUrl: "http://127.0.0.1:3000"
+  baseUrl: "http://127.0.0.1:3000"
 });
 
 //登陆的用户账号密码
 const user = {
-    username: "admin",
-    password: "admin"
+  username: "admin",
+  password: "admin"
 }
 
 req
-//请求登陆地址
-.push(function() {
+  //请求登陆地址
+  .push(function () {
     return {
-    method: "POST",
-    url: `/api/login`,
-    data: user, //传入刚刚定义的user对象到data
-    complete: function (selfElement) { //返回该队列的requestElement对象
+      method: "POST",
+      url: `/api/login`,
+      data: user, //传入刚刚定义的user对象到data
+      complete: function (selfElement) { //返回该队列的requestElement对象
         let response = selfElement.result.response;
         let body = JSON.parse(response.body);
         //注意：建议不要把公共变量直接挂到reqman的实例上，可能会覆盖requman的属性和方法，reqman提供了一个store对象用于存储请求过程中需要存储的公共变量。
         this.store.userToken = body.data.token; //拿到用户token
+      }
     }
-}})
-//然后我们以登陆之后的获取到的token来更新用户的信息。
-.push(function(){
+  })
+  //然后我们以登陆之后的获取到的token来更新用户的信息。
+  .push(function () {
     return {
-    method: "POST",
-    url: `/api/user/updateInfo`,
-    headers: {
-        `Authorization`: this.store.userToken //之后的请求中可以直接使用store里的变量
-    },
-    data: {
+      method: "POST",
+      url: `/api/user/updateInfo`,
+      headers: {
+        'Authorization': this.store.userToken //之后的请求中可以直接使用store里的变量
+      },
+      data: {
         nickname: "jack ma" //更新昵称为 jack ma
+      }
     }
-}})
-.done()//just do it.
+  })
+  .done()//just do it.
+
 ```
 
 ### 例字3：完整体现reqman的api和特性的例子
@@ -140,38 +146,39 @@ const req = new Reqman({
 
 //请求链
 req.
-//定义一个名为bob的请求，prevElement参数表示上一个请求的requestElement对象。
-push('bob', function (prevElement) { 
-  return {
-    method: "POST",
-    url: `/?name=bob`,
-    headers: { //附带自定义headers
-      'content-type': 'application/octet-stream'
-    },
-    complete: function(selfElement) { //请求完毕后的回调函数
+  //定义一个名为bob的请求，prevElement参数表示上一个请求的requestElement对象。
+  push('bob', function (prevElement) {
+    return {
+      method: "POST",
+      url: `/?name=bob`,
+      headers: { //附带自定义headers
+        'content-type': 'application/octet-stream'
+      },
+      complete: function (selfElement) { //请求完毕后的回调函数
 
+      }
     }
-  }
-})
-//定义一个名为jack的请求，prevElement参数表示上一个请求的requestElement对象。
-.push('jack', function (prevElement) {
-  return {
-    baseUrl: 'http://127.0.0.1:4000', //为该请求自定义基地址
-    output: "./jack-result.txt", //为该请求自定义输出文件路径
-    method: "GET",
-    url: `/`,
-    data: {
-      name: 'jack'
-    },
-    complete: function(selfElement) { //请求完毕后的回调函数
-      //do something...
+  })
+  //定义一个名为jack的请求，prevElement参数表示上一个请求的requestElement对象。
+  .push('jack', function (prevElement) {
+    return {
+      baseUrl: 'http://127.0.0.1:4000', //为该请求自定义基地址
+      output: "./jack-result.txt", //为该请求自定义输出文件路径
+      method: "GET",
+      url: `/`,
+      data: {
+        name: 'jack'
+      },
+      showInfo: false, //不将返回的body信息打印出来
+      complete: function (selfElement) { //请求完毕后的回调函数
+        //do something...
+      }
     }
-  }
-})
-.done(function () {
-  //退出程序
-  process.exit(1);
-})
+  })
+  .done(function () {
+    //退出程序
+    process.exit(1);
+  })
 
 ```
 
