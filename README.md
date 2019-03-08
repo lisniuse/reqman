@@ -26,7 +26,7 @@ $ npm install reqman
 ## Importing
 
 ```javascript
-// 使用的是 Node.js `require()`
+// Using Node.js `require()`
 const Reqman = require('reqman');
 
 // Using ES6 imports
