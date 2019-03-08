@@ -8,30 +8,32 @@ server();
 
 //Just need to set up a basic domain
 const req = new Reqman({
-    baseUrl: "http://127.0.0.1:3000"
+  baseUrl: "http://127.0.0.1:3000"
 });
 
 req
-.push(function() {
+  .push(function () {
     return {
-    method: "POST",
-    headers: {
+      method: "POST",
+      headers: {
         "content-type": "application/json"
-    },
-    url: `/`,
-    data: {
+      },
+      url: `/`,
+      data: {
         bar: 'foo'
+      }
     }
-}})
-.push(function() {
+  })
+  .push(function () {
     return {
-    method: "POST",
-    url: `/`,
-    data: {
+      method: "POST",
+      url: `/`,
+      data: {
         bar: 'foo'
+      }
     }
-}})
-.do(function () {
+  })
+  .done(function () {
     console.log("exit!");
     process.exit(1);
-})
+  })

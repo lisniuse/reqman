@@ -11,23 +11,22 @@ const req = new Reqman({
   baseUrl: "http://127.0.0.1:3000"
 });
 
-//Request chain.
 req.
-push(function (prevElement) {
-  return {
-    method: "POST",
-    url: `/?a=1`
-  }
-})
-.push('name b', function (prevElement) {
-  return {
-    method: "GET",
-    url: `/`,
-    data: {
-      a: '2'
+  push(function (prevElement) {
+    return {
+      method: "POST",
+      url: `/?a=1`
     }
-  }
-})
-.done(function () {
-  process.exit(1);
-})
+  })
+  .push('name b', function (prevElement) {
+    return {
+      method: "GET",
+      url: `/`,
+      data: {
+        a: '2'
+      }
+    }
+  })
+  .done(function () {
+    process.exit(1);
+  })

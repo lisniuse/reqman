@@ -17,21 +17,21 @@ const req = new Reqman({
 
 //Request chain.
 req.
-push('bob', function (prevElement) {
-  return {
-    method: "POST",
-    url: `/?name=bob`
-  }
-})
-.push('jack', function (prevElement) {
-  return {
-    method: "GET",
-    url: `/`,
-    data: {
-      name: 'jack'
+  push('bob', function (prevElement) {
+    return {
+      method: "POST",
+      url: `/?name=bob`
     }
-  }
-})
-.done(function () {
-  process.exit(1);
-})
+  })
+  .push('jack', function (prevElement) {
+    return {
+      method: "GET",
+      url: `/`,
+      data: {
+        name: 'jack'
+      }
+    }
+  })
+  .done(function () {
+    process.exit(1);
+  })

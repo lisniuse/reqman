@@ -8,26 +8,23 @@ server();
 
 //Just need to set up a basic domain.
 const req = new Reqman({
-  baseUrl: "http://127.0.0.1:3000",
-  specList: {
-    type: 'invalid', //invalid or valid
-    list: ['bob'] //Only jack exists.
-  },
+  output: './result.txt',
+  baseUrl: "http://127.0.0.1:3000"
 });
 
 req.
-  push('bob', function (prevElement) {
+  push(function (prevElement) {
     return {
       method: "POST",
-      url: `/?name=bob`
+      url: `/?a=1`
     }
   })
-  .push('jack', function (prevElement) {
+  .push('name b', function (prevElement) {
     return {
       method: "GET",
       url: `/`,
       data: {
-        name: 'jack'
+        a: '2'
       }
     }
   })

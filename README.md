@@ -1,44 +1,63 @@
-# reqman
+[English](./README.md) | [简体中文](./Readme_cn.md)
 
-Reqman是一个可以快速帮助后端工程师进行api测试的工具，同时也是一个基于nodejs的爬虫工具。
+# Reqman
 
-## 安装
+Reqman is a tool that can quickly help back-end engineers with api testing, as well as a nodejs-based crawler tool.
 
-这是一个通过 [npm registry](https://www.npmjs.com/) 提供的 [Node.js](https://nodejs.org/en/) 模块。
+[![NPM version](https://badge.fury.io/js/reqman.svg)](http://badge.fury.io/js/reqman)
 
-在安装之前，下载并安装Node.js。需要[Node.js 8.0](https://nodejs.org/en/download/)或更高版本。
+[![npm](https://nodei.co/npm/reqman.png)](https://www.npmjs.com/package/reqman)
 
-使用[`npm install`](https://docs.npmjs.com/getting-started/installing-npm-packages-locally)命令完成安装：
+## Installation
+
+This is a [Node.js](https://nodejs.org/en/) module available through the
+[npm registry](https://www.npmjs.com/).
+
+Before installing, [download and install Node.js](https://nodejs.org/en/download/).
+Node.js 8.0 or higher is required.
+
+Installation is done using the
+[`npm install` command](https://docs.npmjs.com/getting-started/installing-npm-packages-locally):
 
 ```bash
 $ npm install reqman
 ```
 
-## 特性
+## Importing
 
-  * ✔︎ 开箱即用的简易api测试工具
-  * ✔︎ 链式API
-  * ✔︎ 基于nodejs强大请求库 [request](https://github.com/request/request)
-  * ✔︎ 可以用于复杂情景的``爬虫``工具
-  * ✔︎ 可以在复杂场景中进行测试
+```javascript
+// 使用的是 Node.js `require()`
+const Reqman = require('reqman');
 
-## 超简单的入门教程
+// Using ES6 imports
+import Reqman from 'reqman';
+```
 
-Reqman被设计成像 [request](https://github.com/request/request) 一样，是进行http调用的最简单的方式。它支持https，默认情况下遵循重定向。
+## Features
 
-你只需要在返回一个``object`` 的 ``push`` 方法的参数中编写一个匿名函数，返回你的请求参数即可。
+  * ✔︎ Chained API
+  * ✔︎ Out of the box
+  * ✔︎ Crawler, can simulate requests
+  * ✔︎ Suitable for complex and strong coupling scenarios
+  * ✔︎ Powerful request library [request](https://github.com/request/request) based on nodejs
 
-### 例子1：单个请求
+## Super simple to use
+
+Reqman is designed to be like [request](https://github.com/request/request) and is the easiest way to make http calls. It supports https, to follow redirection by default. 
+
+All you have to do is write an anonymous function in the parameters of the ``push`` method that returns a ``object`` and return your request parameters.
+
+### Example 1: a single request
 
 ```javascript
 const Reqman = require('reqman');
 
-//只需要设置一个请求基地址
+//All you have to do is set up a request base address
 const req = new Reqman({
     baseUrl: "http://127.0.0.1:3000"
 });
 
-//比如你想获取所有用户的统计信息，你可以这样写
+//For example, if you want to get statistics on all users, you can write like this:
 req
 .push(function() {
     return {
@@ -48,7 +67,7 @@ req
 .done();
 ```
 
-如果你指定showInfo参数为false，那么就不会打印结果到屏幕上，像这样：
+If you specify the showInfo parameter as false, the results will not be printed to the screen, like this:
 
 ```javascript
 req
@@ -61,108 +80,120 @@ req
 .done();
 ```
 
-### 例子2: 链式API
+### Example 2: Chained API
 
-链API中，第一个请求的结果作为第二个请求的参数。就像这样：
+In the chained API, the result of the first request is used as the argument to the second request. like this:
 
 ```javascript
 const Reqman = require('reqman');
 
-//需要设置一个请求基地址
 const req = new Reqman({
     baseUrl: "http://127.0.0.1:3000"
 });
 
-//登陆的用户账号密码
+//Define account password
 const user = {
     username: "admin",
     password: "admin"
 }
 
 req
-//请求登陆地址
+//Request a login api
 .push(function() {
     return {
     method: "POST",
     url: `/api/login`,
-    data: user, //传入刚刚定义的user对象到data
-    complete: function (selfElement) { //返回该队列的requestElement对象
+    data: user, //Pass in the user object just defined to data
+    complete: function (selfElement) { //Return the requestElement object of the queue
         let response = selfElement.result.response;
         let body = JSON.parse(response.body);
-        //注意：建议不要把公共变量直接挂到reqman的实例上，可能会覆盖requman的属性和方法，reqman提供了一个store对象用于存储请求过程中需要存储的公共变量。
-        this.store.userToken = body.data.token; //拿到用户token
+        //Note: It is recommended not to hang public variables directly on the reqman instance, which may override the requman properties and methods. Reqman provides a store object to store the public variables that need to be stored during the request process.
+        this.store.userToken = body.data.token; //Get the user token
     }
 }})
-//然后我们以登陆之后的获取到的token来更新用户的信息。
+//Then we update the user's information with the token obtained after login.
 .push(function(){
     return {
     method: "POST",
     url: `/api/user/updateInfo`,
     headers: {
-        `Authorization`: this.store.userToken //之后的请求中可以直接使用store里的变量
+        `Authorization`: this.store.userToken //The variables in the store can be directly used in subsequent requests.
     },
     data: {
-        nickname: "jack ma" //更新昵称为 jack ma
+        nickname: "jack ma" //Update nickname jack ma
     }
 }})
 .done()//just do it.
 ```
 
-### 例字3：完整体现reqman的api和特性的例子
+### Example 3: Example of a complete representation of reqman's api and features
 
 ```javascript
 'use strict'
 
 const req = new Reqman({
   baseUrl: "http://127.0.0.1:3000",
+  output: "./request-result.txt", //Append the result returned after the request to the specified file path at the same time.
   specList: {
-    type: 'valid', //参数：invalid 或 valid。定义有效或者无效的请求。
-    list: ['bob'] //让名为bob的请求有效，其余的请求失效。如果type为invalid，则相反。
-  },
+    type: 'valid', //Parameters: invalid or valid. Define valid or invalid requests.
+    list: ['bob'] //Let the request named bob be valid and the rest of the requests invalid. If type is invalid, the opposite is true.
+  }
 });
 
-//请求链
 req.
-//定义一个名为bob的请求，prevElement参数表示上一个请求的requestElement对象。
+//Define a request named bob, and the prevElement parameter represents the requestElement object of the previous request.
 push('bob', function (prevElement) { 
   return {
     method: "POST",
     url: `/?name=bob`,
-    headers: { //附带自定义headers
+    headers: { //With custom headers
       'content-type': 'application/octet-stream'
     },
-    complete: function(selfElement) { //请求完毕后的回调函数
+    complete: function(selfElement) { //Callback function after request
 
     }
   }
 })
-//定义一个名为jack的请求，prevElement参数表示上一个请求的requestElement对象。
+//Define a request named jack, and the prevElement parameter represents the requestElement object of the previous request.
 .push('jack', function (prevElement) {
   return {
-    baseUrl: 'http://127.0.0.1:4000', //为该请求自定义基地址
+    baseUrl: 'http://127.0.0.1:4000', //Customize the base address for this request
+    output: "./jack-result.txt", //Customize the output file path for this request
     method: "GET",
     url: `/`,
     data: {
       name: 'jack'
     },
-    complete: function(selfElement) { //请求完毕后的回调函数
+    complete: function(selfElement) { //Callback function after request
       //do something...
     }
   }
 })
 .done(function () {
-  //退出程序
+  //exit the program
   process.exit(1);
 })
 
 ```
 
-### 更多例子
+### More examples
 
-更多例子在项目的 examples 文件夹中，你可以直接运行：
+More examples in the projects folder of the project, you can run this command directly:
 
 ```bash
 node getHelloworld.js
 ```
+
+## License
+
+The MIT License (MIT)
+
+Copyright (c) 2015-present ZhiBing \<17560235@qq.com>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 [back to top](#reqman)

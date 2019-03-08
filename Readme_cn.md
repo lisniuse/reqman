@@ -1,6 +1,12 @@
-# reqman
+[English](./README.md) | [简体中文](./Readme_cn.md)
+
+# Reqman
 
 Reqman是一个可以快速帮助后端工程师进行api测试的工具，同时也是一个基于nodejs的爬虫工具。
+
+[![NPM version](https://badge.fury.io/js/reqman.svg)](http://badge.fury.io/js/reqman)
+
+[![npm](https://nodei.co/npm/reqman.png)](https://www.npmjs.com/package/reqman)
 
 ## 安装
 
@@ -14,13 +20,23 @@ Reqman是一个可以快速帮助后端工程师进行api测试的工具，同�
 $ npm install reqman
 ```
 
+## 引入使用
+
+```javascript
+// 使用的是 Node.js `require()`
+const Reqman = require('reqman');
+
+// Using ES6 imports
+import Reqman from 'reqman';
+```
+
 ## 特性
 
-  * ✔︎ 开箱即用的简易api测试工具
   * ✔︎ 链式API
+  * ✔︎ 开箱即用
+  * ✔︎ 可爬虫、可模拟请求
+  * ✔︎ 适用于复杂强耦合场景
   * ✔︎ 基于nodejs强大请求库 [request](https://github.com/request/request)
-  * ✔︎ 可以用于复杂情景的``爬虫``工具
-  * ✔︎ 可以在复杂场景中进行测试
 
 ## 超简单的入门教程
 
@@ -115,10 +131,11 @@ req
 
 const req = new Reqman({
   baseUrl: "http://127.0.0.1:3000",
+  output: "./request-result.txt", //将请求后返回的结果同时追加写入到指定的文件路径
   specList: {
     type: 'valid', //参数：invalid 或 valid。定义有效或者无效的请求。
     list: ['bob'] //让名为bob的请求有效，其余的请求失效。如果type为invalid，则相反。
-  },
+  }
 });
 
 //请求链
@@ -140,6 +157,7 @@ push('bob', function (prevElement) {
 .push('jack', function (prevElement) {
   return {
     baseUrl: 'http://127.0.0.1:4000', //为该请求自定义基地址
+    output: "./jack-result.txt", //为该请求自定义输出文件路径
     method: "GET",
     url: `/`,
     data: {
@@ -164,5 +182,17 @@ push('bob', function (prevElement) {
 ```bash
 node getHelloworld.js
 ```
+
+## License
+
+The MIT License (MIT)
+
+Copyright (c) 2015-present ZhiBing \<17560235@qq.com>
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 [back to top](#reqman)
