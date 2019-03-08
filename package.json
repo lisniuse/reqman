@@ -1,7 +1,7 @@
 {
   "name": "reqman",
   "description": "Reqman is a tool that can quickly help back-end engineers with api testing, as well as a nodejs-based crawler tool.",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "author": "ZhiBing <17560235@qq.com>",
   "license": "MIT",
   "repository": {

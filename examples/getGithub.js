@@ -1,12 +1,12 @@
-//引入Reqman，记得第一个字母要大写，因为是Reqman是一个类。
+//Importing Reqman, remember to capitalize the first letter because Reqman is a class.
 const Reqman = require('../lib/reqman');
 
-//new Reqman，然后参数传入一个基地址。
+//new Reqman，and then the parameter is passed in a base address.
 const req = new Reqman({
   baseUrl: "https://github.com"
 });
 
-//举个例子，你可以用reqman抓取本项目的github地址，像这样：
+//For example, you can use reqman to grab the github address of this project, like this:
 req
   .push(function () {
     return {
