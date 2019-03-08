@@ -46,20 +46,23 @@ Reqman被设计成像 [request](https://github.com/request/request) 一样，是
 
 ### 例子1：单个请求
 
+[点击这里查看这个例子源码](./examples/getGithub.js)
+
 ```javascript
+//引入Reqman，记得第一个字母要大写，因为是Reqman是一个类。
 const Reqman = require('reqman');
 
-//只需要设置一个请求基地址
+//new Reqman，然后参数传入一个基地址。
 const req = new Reqman({
-  baseUrl: "http://127.0.0.1:3000"
+  baseUrl: "https://github.com"
 });
 
-//比如你想获取所有用户的统计信息，你可以这样写
+//举个例子，你可以用reqman抓取本项目的github地址，像这样：
 req
   .push(function () {
     return {
       method: "GET",
-      url: `/api/user/count`
+      url: `/lisniuse/reqman`
     }
   })
   .done();
@@ -73,7 +76,7 @@ req
   .push(function () {
     return {
       method: "GET",
-      url: `/api/user/count`,
+      url: `/lisniuse/reqman`,
       showInfo: false
     }
   })
@@ -184,7 +187,7 @@ req.
 
 ### 更多例子
 
-更多例子在项目的 examples 文件夹中，你可以直接运行：
+更多例子在项目的 [examples](./examples) 文件夹中，你可以直接运行：
 
 ```bash
 node getHelloworld.js

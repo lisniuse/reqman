@@ -49,23 +49,27 @@ All you have to do is write an anonymous function in the parameters of the ``pus
 
 ### Example 1: a single request
 
+[Click here to view this example source code](./examples/getGithub.js)
+
 ```javascript
+//Importing Reqman, remember to capitalize the first letter because Reqman is a class.
 const Reqman = require('reqman');
 
-//All you have to do is set up a request base address
+//new Reqman，and then the parameter is passed in a base address.
 const req = new Reqman({
-  baseUrl: "http://127.0.0.1:3000"
+  baseUrl: "https://github.com"
 });
 
-//For example, if you want to get statistics on all users, you can write like this:
+//For example, you can use reqman to grab the github address of this project, like this:
 req
   .push(function () {
     return {
       method: "GET",
-      url: `/api/user/count`
+      url: `/lisniuse/reqman`
     }
   })
   .done();
+
 ```
 
 If you specify the showInfo parameter as false, the results will not be printed to the screen, like this:
@@ -75,11 +79,12 @@ req
   .push(function () {
     return {
       method: "GET",
-      url: `/api/user/count`,
+      url: `/lisniuse/reqman`,
       showInfo: false
     }
   })
   .done();
+  
 ```
 
 ### Example 2: Chained API
