@@ -4,7 +4,7 @@
 
 Reqman is a tool that can quickly help back-end engineers with api testing, as well as a nodejs-based crawler tool.
 
-[![NPM version](https://badge.fury.io/js/reqman.svg)](http://badge.fury.io/js/reqman)
+[![Financial Contributors on Open Collective](https://opencollective.com/reqman/all/badge.svg?label=financial+contributors)](https://opencollective.com/reqman) [![NPM version](https://badge.fury.io/js/reqman.svg)](http://badge.fury.io/js/reqman)
 
 [![npm](https://nodei.co/npm/reqman.png)](https://www.npmjs.com/package/reqman)
 
@@ -194,6 +194,36 @@ More [examples](./examples) in the projects folder of the project, you can run t
 ```bash
 node getHelloworld.js
 ```
+
+## Contributors
+
+### Code Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="https://github.com/lisniuse/reqman/graphs/contributors"><img src="https://opencollective.com/reqman/contributors.svg?width=890&button=false" /></a>
+
+### Financial Contributors
+
+Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/reqman/contribute)]
+
+#### Individuals
+
+<a href="https://opencollective.com/reqman"><img src="https://opencollective.com/reqman/individuals.svg?width=890"></a>
+
+#### Organizations
+
+Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/reqman/contribute)]
+
+<a href="https://opencollective.com/reqman/organization/0/website"><img src="https://opencollective.com/reqman/organization/0/avatar.svg"></a>
+<a href="https://opencollective.com/reqman/organization/1/website"><img src="https://opencollective.com/reqman/organization/1/avatar.svg"></a>
+<a href="https://opencollective.com/reqman/organization/2/website"><img src="https://opencollective.com/reqman/organization/2/avatar.svg"></a>
+<a href="https://opencollective.com/reqman/organization/3/website"><img src="https://opencollective.com/reqman/organization/3/avatar.svg"></a>
+<a href="https://opencollective.com/reqman/organization/4/website"><img src="https://opencollective.com/reqman/organization/4/avatar.svg"></a>
+<a href="https://opencollective.com/reqman/organization/5/website"><img src="https://opencollective.com/reqman/organization/5/avatar.svg"></a>
+<a href="https://opencollective.com/reqman/organization/6/website"><img src="https://opencollective.com/reqman/organization/6/avatar.svg"></a>
+<a href="https://opencollective.com/reqman/organization/7/website"><img src="https://opencollective.com/reqman/organization/7/avatar.svg"></a>
+<a href="https://opencollective.com/reqman/organization/8/website"><img src="https://opencollective.com/reqman/organization/8/avatar.svg"></a>
+<a href="https://opencollective.com/reqman/organization/9/website"><img src="https://opencollective.com/reqman/organization/9/avatar.svg"></a>
 
 ## License
 
