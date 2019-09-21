@@ -22,6 +22,7 @@
     "chalk": "^2.4.1",
     "flyio": "^0.6.13",
     "lodash": "^4.17.10",
+    "opencollective-postinstall": "^2.0.2",
     "word-table": "^1.0.3"
   },
   "devDependencies": {
@@ -39,6 +40,11 @@
     "lib/"
   ],
   "scripts": {
-    "test": ""
+    "test": "",
+    "postinstall": "opencollective-postinstall || true"
+  },
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/reqman"
   }
 }
